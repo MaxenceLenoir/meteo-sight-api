@@ -1,3 +1,5 @@
+require 'net/http'
+
 class WeatherService
   def by_city(city:)
     data = Net::HTTP.get(URI("https://api.openweathermap.org/data/2.5/forecast?q=#{city}&appid=#{Rails.application.credentials.openweather_key}&units=metric"))
