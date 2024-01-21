@@ -1,7 +1,5 @@
-class Weather
-  attr_reader :client
-
-  def self.by_city(city:)
+class WeatherService
+  def by_city(city:)
     data = Net::HTTP.get(URI("https://api.openweathermap.org/data/2.5/forecast?q=#{city}&appid=#{Rails.application.credentials.openweather_key}&units=metric"))
     { searches: 
       {
@@ -12,7 +10,7 @@ class Weather
     }
   end
 
-  def self.by_coordinates(lat:, lon:)
+  def by_coordinates(lat:, lon:)
     data = Net::HTTP.get(URI("https://api.openweathermap.org/data/2.5/forecast?lat=#{lat}&lon=#{lon}&appid=#{Rails.application.credentials.openweather_key}&units=metric"))
     { searches: 
       {
